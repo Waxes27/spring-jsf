@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+	<title>Todo List</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div class="container mt-5">
+	<h:form>
+		<h2>Todo List '#{toDoPage.username}'</h2>
+		<div class="input-group mt-5 mb-5">
+			<h:inputText value="#{toDoPage.newTodo}" id="todoInput" required="true" class="form-control"/>
+			<h:commandButton styleClass="btn btn-primary" value="Add" action="#{toDoPageAction.logNewTodoItem()}"/>
+		</div>
+
+		<ul class="list-group">
+			<ui:repeat value="#{toDoPageAction.getAll()}" var="todo" varStatus="status">
+				<li class="list-group-item d-flex justify-content-between align-items-center mb-2">
+					#{todo.todoItem}
+					<h:commandLink value="Mark Complete" action="#{toDoPageAction.deleteTodo(todo.id)}"
+								   styleClass="delete btn btn-success btn-sm"/>
+				</li>
+			</ui:repeat>
+		</ul>
+	</h:form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
