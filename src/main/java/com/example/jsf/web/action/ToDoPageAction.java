@@ -1,11 +1,8 @@
 package com.example.jsf.web.action;
 
 
-import com.example.jsf.models.TodoModel;
 import com.example.jsf.service.TodoService;
 import com.example.jsf.web.form.ToDoPage;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
