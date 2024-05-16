@@ -14,9 +14,10 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public class UserModel implements UserDetails {
+    public UserModel() {
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)

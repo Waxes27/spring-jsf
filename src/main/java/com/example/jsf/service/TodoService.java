@@ -7,6 +7,7 @@ import com.example.jsf.repository.TodoRepository;
 import com.example.jsf.repository.UserRepository;
 import com.example.jsf.utils.SessionUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 public class TodoService {
 
+    @Autowired
     private final TodoRepository todoRepository;
+    @Autowired
     private final UserService userService;
 
     public List<TodoModel> getAllTodos(){
@@ -42,9 +45,14 @@ public class TodoService {
 
         todo.setUserModel(user);
         todo.setTodoItem(todoData);
-        TodoModel todoModel = todoRepository.save(todo);
-        System.out.println(todoRepository.findAll());
+        todoRepository.save(todo);
+        return "todo";
+    }
 
+    public String editTodoById(Long id,String newData){
+        System.out.println(id);
+        todoRepository.updateTodoItemById(newData,id);
+        System.out.println(todoRepository.findAll());
         return "todo";
     }
 }

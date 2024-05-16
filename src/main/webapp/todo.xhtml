@@ -13,17 +13,19 @@
 	<h:form>
 		<h2>Todo List '#{toDoPage.username}'</h2>
 		<div class="input-group mt-5 mb-5">
-			<h:inputText value="#{toDoPage.newTodo}" id="todoInput" required="true" class="form-control"/>
+			<h:inputText value="#{toDoPage.newTodo}" id="todoInput" required="false" class="form-control"/>
 			<h:commandButton styleClass="btn btn-primary" value="Add" action="#{toDoPageAction.logNewTodoItem()}"/>
 		</div>
 
 		<ul class="list-group">
 			<ui:repeat value="#{toDoPageAction.getAll()}" var="todo" varStatus="status">
-				<li class="list-group-item d-flex justify-content-between align-items-center mb-2">
+				<li class="list-group-item d-flex justify-content-between align-items-center pr-0">
 					#{todo.todoItem}
+
 					<h:commandLink value="Mark Complete" action="#{toDoPageAction.deleteTodo(todo.id)}"
 								   styleClass="delete btn btn-success btn-sm"/>
 				</li>
+				<h:commandButton styleClass="btn btn-info btn-sm" value="Edit" action="#{toDoPageAction.editTodoRedirect(todo.id)}"/>
 			</ui:repeat>
 		</ul>
 	</h:form>
